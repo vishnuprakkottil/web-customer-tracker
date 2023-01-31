@@ -1,47 +1,169 @@
-html, body{
-	margin-left:15px; margin-right:15px; 
-	padding:0px; 
-	font-family:Verdana, Arial, Helvetica, sans-serif;
+* {
+	box-sizing: border-box;
 }
 
-table {   
-	border-collapse:collapse;
-	border:1px solid gray;
-	font-family: Tahoma,Verdana,Segoe,sans-serif;
-	width:72%;
+body {
+	margin: 0;
 }
- 
+
+/* Create three equal columns that floats next to each other */
+.column {
+	float: left;
+	width: 25%;
+	padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.container {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+	width: 70%
+}
+
+.col-25 {
+	float: left;
+	width: 25%;
+	margin-top: 6px;
+}
+
+.col-75 {
+	float: left;
+	width: 75%;
+	margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Left and right column */
+.column.side {
+	width: 25%;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+	.col-25, .col-75, input[type=submit] {
+		width: 100%;
+		margin-top: 0;
+	}
+
+	/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+	@media screen and (max-width:600px) {
+		.column {
+			width: 100%;
+		}
+	}
+}
+
+html, body {
+	margin-left: 15px;
+	margin-right: 15px;
+	padding: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+table {
+	border-collapse: collapse;
+	border: 1px solid #ffffff;
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+	width: 100%;
+}
+
 th {
-	border:1px solid gray;
-	background:none repeat scroll 0 0 #09c332;
-	padding:10px;
+	border: 1px solid #ffffff;
+	background: none repeat scroll 0 0 #09c332;
+	padding: 10px;
 	color: #FFFFFF;
 }
 
 tr {
-	border:1px solid gray;
-	text-align:center;	
+	border: 1px solid #ffffff;
+	text-align: center;
 }
- 
-tr:nth-child(even) {background: #FFFFFF}
-tr:nth-child(odd) {background: #BBBBBB}	
- 
-#wrapper {width: 100%; margin-top: 0px; }
-#header {width: 70%; background: #09c332; margin-top: 0px; padding:15px 0px 15px 15px;}
-#header h2 {width: 100%; margin:auto; color: #FFFFFF;}
-#container {width: 100%; margin:auto}
-#container h3 {color: #000;}
-#container #content {margin-top: 20px;}
 
-.add-button {
-	border: 1px solid #666; 
-	border-radius: 5px; 
-	padding: 4px; 
-	font-size: 12px;
-	font-weight: bold;
-	width: 120px; 
-	padding: 5px 10px; 
-	
-	margin-bottom: 15px;
-	background: #cccccc;
+tr:nth-child(even) {
+	background: #FFFFFF
 }
+
+tr:nth-child(odd) {
+	background: #BBBBBB
+}
+
+#wrapper {
+	width: 100%;
+	margin-top: 0px;
+}
+
+#header {
+	width: 70%;
+	background: #09c332;
+	margin-top: 0px;
+	padding: 15px 0px 15px 15px;
+}
+
+#header h2 {
+	width: 100%;
+	margin: auto;
+	color: #FFFFFF;
+}
+
+#container {
+	width: 100%;
+	margin: auto
+}
+
+#container h3 {
+	color: #000;
+}
+
+#container #content {
+	margin-top: 20px;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #26a269;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.button:hover{
+	background-color: #2ec27e;
+}
+
+.button-delete{
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #c01c28;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.button-delete:hover{
+	background-color: #e01b24;
+}
+

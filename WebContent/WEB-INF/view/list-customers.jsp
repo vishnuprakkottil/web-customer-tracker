@@ -4,97 +4,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Customer List</title>
-	<link type="text/css" rel="stylesheet" href = "${pageContext.request.contextPath}/resources/css/style.css"/>
+<meta charset="UTF-8">
+<title>Customer List</title>
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css" />
 
-	<style>
-	* {
-		box-sizing: border-box;
-	}
-	
-	body {
-		margin: 0;
-	}
-	
-	/* Create three equal columns that floats next to each other */
-	.column {
-		float: left;
-		width: 25%;
-		padding: 15px;
-	}
-	
-	/* Clear floats after the columns */
-	.row:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-	
-	.container {
-		border-radius: 5px;
-		background-color: #f2f2f2;
-		padding: 20px;
-	}
-	
-	.col-25 {
-		float: left;
-		width: 25%;
-		margin-top: 6px;
-	}
-	
-	.col-75 {
-		float: left;
-		width: 75%;
-		margin-top: 6px;
-	}
-	
-	/* Clear floats after the columns */
-	.row:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-	
-	/* Left and right column */
-	.column.side {
-		width: 25%;
-	}
-	
-	/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-	@media screen and (max-width: 600px) {
-		.col-25, .col-75, input[type=submit] {
-			width: 100%;
-			margin-top: 0;
-		}
-	
-		/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-		@media screen and (max-width:600px) {
-			.column {
-				width: 100%;
-			}
-		}
-	}
-	</style>
+<style>
+
+</style>
 </head>
 <body>
 	<section>
-		<div class="container">
-			<h4>List Customer</h4>
+		<div id="header" class="container">
+			<h2>Web Customer Tracker</h2>
 		</div>
+	</section>	
+	<section>	
+		<div class="container">
+			<input class= "button" type="button" value="Add Customer" onclick="window.location.href='addNewCustomer'; return false;"/>
+		</div>
+
+
 	</section>
 	<section>
-
-		<div class="container">
-			<h4>Add New Customer</h4>
-		</div>
-
-
-	</section>
-	<section>
-
-		<div id = "wrapper" class ="container">
-			<h2>Customer List</h2>
+		<div>
+			<div id="header" class="container">
+				<h2>Customer List</h2>
+			</div>
 		</div>
 		<div class="container">
 			<table>
@@ -104,6 +40,7 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email</th>
+					<th>Edit/Delete</th>
 				</tr>
 
 				<c:forEach var="customer" items="${customers}" varStatus="loop">
@@ -113,6 +50,11 @@
 						<td>${customer.firstName}</td>
 						<td>${customer.lastName}</td>
 						<td>${customer.email}</td>
+						<td>
+						
+						<input class= "button" type="button" value="Update" onclick="window.location.href='updateCustomer/${customer.id}'; return false;"/>
+						<input class= "button-delete" type="button" value="Delete" onclick="window.location.href='deleteCustomer/${customer.id}'; return false;"/>
+						</td>
 					</tr>
 				</c:forEach>
 
