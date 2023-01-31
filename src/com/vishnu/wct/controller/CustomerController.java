@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vishnu.wct.entity.Customer;
@@ -19,7 +21,7 @@ public class CustomerController {
 	//inject the customer service
 	@Autowired
 	private CustomerService customerService;
-	
+
 
 	@GetMapping("/list")
 	public String listCustomers(Model model) {
@@ -28,6 +30,25 @@ public class CustomerController {
 
 		model.addAttribute("customers",customers);
 		return "list-customers";
+
+	}
+	
+	@GetMapping("/addNewCustomer")
+	public String addNewCustomer(Model model) {
+		
+		Customer customer = new Customer();
+		
+		model.addAttribute("customer",customer);
+		
+		return "add-customer";
+
+	}
+	
+	@PostMapping("/saveCustomer")
+	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
+		
+		customerService.addCustomer(customer);
+		return "redirect:/customer/list";
 
 	}
 }

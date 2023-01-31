@@ -3,8 +3,6 @@ package com.vishnu.wct.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -34,6 +32,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 			e.printStackTrace();
 		}
 		return customers;
+	}
+
+	@Override
+	public void saveCustomer(Customer customer) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.save(customer);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 	}
 
 }
