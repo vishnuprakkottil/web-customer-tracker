@@ -24,6 +24,7 @@
 		</div>
 		<div class ="container">
 			<form:form action="saveCustomer" modelAttribute ="customer" method="POST">
+				<form:hidden path="id"/>
 				<div class="row">
 					<div class="col-25">
 						<label for="fname">First Name</label>

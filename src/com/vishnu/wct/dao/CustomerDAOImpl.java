@@ -25,7 +25,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		List<Customer> customers = new ArrayList<>();
 		try {
 			Query<Customer> query =
-					session.createQuery("from Customer", Customer.class);
+					session.createQuery("from Customer order by firstName asc", Customer.class);
 			customers = query.getResultList();
 
 		} catch (Exception e) {
@@ -38,11 +38,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public void saveCustomer(Customer customer) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.save(customer);
+			session.saveOrUpdate(customer);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
+	}
+
+	@Override
+	public Customer getCustomerById(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Customer customer = session.get(Customer.class, id);
+
+		return customer;
 	}
 
 }

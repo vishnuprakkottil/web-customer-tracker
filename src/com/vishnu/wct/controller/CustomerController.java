@@ -9,46 +9,56 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vishnu.wct.entity.Customer;
 import com.vishnu.wct.service.CustomerService;
-
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 
-	//inject the customer service
+	// inject the customer service
 	@Autowired
 	private CustomerService customerService;
-
 
 	@GetMapping("/list")
 	public String listCustomers(Model model) {
 
 		List<Customer> customers = customerService.getCustomers();
 
-		model.addAttribute("customers",customers);
+		model.addAttribute("customers", customers);
 		return "list-customers";
 
 	}
-	
+
 	@GetMapping("/addNewCustomer")
 	public String addNewCustomer(Model model) {
-		
+
 		Customer customer = new Customer();
-		
-		model.addAttribute("customer",customer);
-		
+
+		model.addAttribute("customer", customer);
+
 		return "add-customer";
 
 	}
-	
+
 	@PostMapping("/saveCustomer")
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-		
+
 		customerService.addCustomer(customer);
 		return "redirect:/customer/list";
+
+	}
+
+	@GetMapping("/viewCustomer")
+	public String getCustomer(@RequestParam("customerId") int id,
+					Model model) {
+
+		Customer customerById = customerService.getCustomerById(id);
+		model.addAttribute("customer", customerById);
+
+		return "add-customer";
 
 	}
 }

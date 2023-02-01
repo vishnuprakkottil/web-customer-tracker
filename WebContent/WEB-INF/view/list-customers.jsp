@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,6 @@
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
 
 <style>
-
 </style>
 </head>
 <body>
@@ -18,10 +18,11 @@
 		<div id="header" class="container">
 			<h2>Web Customer Tracker</h2>
 		</div>
-	</section>	
-	<section>	
+	</section>
+	<section>
 		<div class="container">
-			<input class= "button" type="button" value="Add Customer" onclick="window.location.href='addNewCustomer'; return false;"/>
+			<input class="button" type="button" value="Add Customer"
+				onclick="window.location.href='addNewCustomer'; return false;" />
 		</div>
 
 
@@ -40,7 +41,7 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email</th>
-					<th>Edit/Delete</th>
+					<th>Action</th>
 				</tr>
 
 				<c:forEach var="customer" items="${customers}" varStatus="loop">
@@ -51,9 +52,35 @@
 						<td>${customer.lastName}</td>
 						<td>${customer.email}</td>
 						<td>
-						
-						<input class= "button" type="button" value="Update" onclick="window.location.href='updateCustomer/${customer.id}'; return false;"/>
-						<input class= "button-delete" type="button" value="Delete" onclick="window.location.href='deleteCustomer/${customer.id}'; return false;"/>
+							<!-- <c:url var="update" value="/customer/viewCustomer">
+								<c:param name="customerId" value="${customer.id}" />
+							</c:url> 
+							
+							<a href="${update}">update</a> -->
+							<div class="row">
+								<div class="col-25">
+									<form
+										action="${pageContext.request.contextPath}/customer/viewCustomer"
+										method="GET">
+										<input type="hidden" name="customerId" value="${customer.id}" />
+										<button class="button" type="submit">Update</button>
+									</form>
+								</div>								
+								<div class="col-75">
+									<form
+										action="${pageContext.request.contextPath}/customer/deleteCustomer"
+										method="GET">
+										<input type="hidden" name="customerId" value="${customer.id}" />
+										<button class="button-delete" type="submit">Delete</button>
+									</form>
+								</div>
+							</div> 
+							<!--
+							<form:form action="${update}" modelAttribute="customer">
+								<input class="button" type="button" value="Update "/>
+								<input class= "button-delete" type="button" value="Delete" onclick="window.location.href='deleteCustomer/${customer.id}'; return false;"/>
+						 		
+							</form:form>-->
 						</td>
 					</tr>
 				</c:forEach>
