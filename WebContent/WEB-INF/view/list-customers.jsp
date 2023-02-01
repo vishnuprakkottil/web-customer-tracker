@@ -71,7 +71,7 @@
 										action="${pageContext.request.contextPath}/customer/deleteCustomer"
 										method="GET">
 										<input type="hidden" name="customerId" value="${customer.id}" />
-										<button class="button-delete" type="submit">Delete</button>
+										<button class="button-delete" type="submit" onclick="if(!(confirm('Are you sure you want to deleted this customer?'))) return false">Delete</button>
 									</form>
 								</div>
 							</div> 
