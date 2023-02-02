@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.vishnu.wct.entity.Customer;
+import com.vishnu.wct.util.SortUtils;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
@@ -19,13 +20,32 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private SessionFactory sessionFactory; // same as bean id in xml file
 
 	@Override
-	public List<Customer> getCustomers() {
+	public List<Customer> getCustomers(int sortField) {
 
 		Session session = sessionFactory.getCurrentSession();
+		String theFieldName = null;
+		
+		switch (sortField) {
+			case SortUtils.ID: 
+				theFieldName = "id";
+				break;
+			case SortUtils.FIRST_NAME: 
+				theFieldName = "firstName";
+				break;
+			case SortUtils.LAST_NAME:
+				theFieldName = "lastName";
+				break;
+			case SortUtils.EMAIL:
+				theFieldName = "email";
+				break;
+			default:
+				theFieldName = "firstName";
+		}
 		List<Customer> customers = new ArrayList<>();
 		try {
+			String queryString = "from Customer order by " + theFieldName;
 			Query<Customer> query =
-					session.createQuery("from Customer order by firstName asc", Customer.class);
+					session.createQuery(queryString, Customer.class);
 			customers = query.getResultList();
 
 		} catch (Exception e) {

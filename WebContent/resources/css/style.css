@@ -44,14 +44,14 @@ body {
 	width: 50%;
 }
 
-.col-50 {
+.col-50r {
 	float: right;
 	width: 50%;
 }
 
 .col-30 {
 	float: left;
-	width: 30%;
+	width: 33%;
 }
 
 /* Clear floats after the columns */
