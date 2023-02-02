@@ -24,7 +24,19 @@
 			<input class="button" type="button" value="Add Customer"
 				onclick="window.location.href='addNewCustomer'; return false;" />
 		</div>
+		<div class="container">
+			<form:form action="search" method="GET" >
+				<div class="row">
+					<div class="col-30">
+						<input type="text" name="theSearchName" placeholder="Search Customer"/>
+					</div>
+					<div class="col-30">
+						<input type="submit" value="Search" class="button" />
+					</div>
+				</div>
 
+			</form:form>
+		</div>
 
 	</section>
 	<section>
@@ -58,24 +70,24 @@
 							
 							<a href="${update}">update</a> -->
 							<div class="row">
-								<div class="col-25">
+								<div class="col-50">
 									<form
 										action="${pageContext.request.contextPath}/customer/viewCustomer"
 										method="GET">
 										<input type="hidden" name="customerId" value="${customer.id}" />
 										<button class="button" type="submit">Update</button>
 									</form>
-								</div>								
-								<div class="col-75">
+								</div>
+								<div class="col-50">
 									<form
 										action="${pageContext.request.contextPath}/customer/deleteCustomer"
 										method="GET">
 										<input type="hidden" name="customerId" value="${customer.id}" />
-										<button class="button-delete" type="submit" onclick="if(!(confirm('Are you sure you want to deleted this customer?'))) return false">Delete</button>
+										<button class="button-delete" type="submit"
+											onclick="if(!(confirm('Are you sure you want to deleted this customer?'))) return false">Delete</button>
 									</form>
 								</div>
-							</div> 
-							<!--
+							</div> <!--
 							<form:form action="${update}" modelAttribute="customer">
 								<input class="button" type="button" value="Update "/>
 								<input class= "button-delete" type="button" value="Delete" onclick="window.location.href='deleteCustomer/${customer.id}'; return false;"/>

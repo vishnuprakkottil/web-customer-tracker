@@ -52,4 +52,16 @@ public class CustomerServiceImpl implements CustomerService {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	@Transactional
+	public List<Customer> searchCustomer(String theSearchName) {
+		
+		try {
+			return customerDAO.searchCustomer(theSearchName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
